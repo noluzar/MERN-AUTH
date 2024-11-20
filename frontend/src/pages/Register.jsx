@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { FaApple, FaCheckSquare } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
@@ -45,10 +45,7 @@ export const Register = () => {
   };
 
   return (
-    <div className="flex items-center space-x-4">
-      <div className="w-[40%]">
-        <img src="./skin.jpg" alt="Skin" className="w-full" />
-      </div>
+    <div className="flex items-center space-x-4 h-[100vh] justify-between">
       <div className="w-[50%] flex flex-col gap-2 items-center space-y-4">
         <div>
           <h1 className="text-[60px]">Create an account</h1>
@@ -133,6 +130,9 @@ export const Register = () => {
             Apple
           </button>
         </div>
+      </div>
+      <div className="w-[40%]">
+        <img src="./facee.jpg" alt="Skin" className="w-full h-[100vh] object-cover" />
       </div>
     </div>
   );

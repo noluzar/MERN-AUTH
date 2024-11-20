@@ -15,7 +15,7 @@ import { CreateProduct } from './pages/CreateProduct'
 
 const App = () => {
   return (
-    <div className='bg-[#f5e8d9] overflow-y-hidden h-auto'>
+    <div className='bg-[#f6e9db] font-title'>
     <Router>
         <Navbar />
         <ToastContainer/>

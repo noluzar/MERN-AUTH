@@ -39,9 +39,7 @@ export const CreateProduct = () => {
     };
 
     return (
-        <div className="h-screen">
-         
-            <div className="flex justify-between items-center pt-[100px]">
+            <div className="flex justify-between items-center">
                 <div className="w-[50%] h-[50vh]">
                 <div className="flex justify-center text-blue-500 hover:underline">
                     <a href="./products">
@@ -85,18 +83,15 @@ export const CreateProduct = () => {
                         />
                         <button
                             type="submit"
-                            className="border-2 border-black p-2 w-[30vw]"
+                            className="border-none bg-[#afad55] text-white p-2 w-[30vw]"
                         >
                             Create Product
                         </button>
                     </form>
-                    
                 </div>
-                
-                <div className="w-[40%] h-auto">
-                    <img src="./skin.jpg" className="h-[70vh]" alt="Product" />
+                <div className="w-[40%]">
+                    <img src="./vid.jpg" className="h-[100vh] w-full" alt="Product" />
                 </div>
             </div>
-        </div>
     );
 };

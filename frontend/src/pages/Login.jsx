@@ -35,9 +35,9 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex items-center space-x-4">
-      <div className="w-[40%]">
-        <img src="./skin.jpg" alt="Skin" className="w-full" />
+    <div className="flex items-center space-x-4 h-[100vh]">
+      <div className="w-[50%]">
+        <img src="./Green.jpg" alt="Skin" className="w-full h-[100vh]" />
       </div>
       <div className="w-[50%] flex flex-col gap-2 items-center space-y-4">
         <div>
@@ -75,7 +75,7 @@ export const Login = () => {
               </a>
             </p>
           </div>
-          <button type="submit" className="border-2 border-black p-2 w-[30vw]">
+          <button type="submit" className="border-none bg-[#afad55] text-white p-2 w-[30vw]">
             Login
           </button>
         </form>

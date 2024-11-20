@@ -1,12 +1,12 @@
-import React from 'react'
+// import React from 'react'
 
 export const About = () => {
     return (
-        <div className='h-full flex items-center bg-[#afad55]'>
-                <div className='w-[50%]'>
+        <div className='h-[100vh] flex items-center justify-between bg-[#ccca68]'>
+                <div className='w-[40%]'>
                     <img
-                        src='./skin.jpg' 
-                        className='h-[100vh]'
+                        src='./skinn.jpg' 
+                        className='h-[100vh] w-full'
                         />
                 </div>
                 <div className='w-[50%]'>

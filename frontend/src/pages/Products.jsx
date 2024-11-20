@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useProductStore } from "../store/product";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { FaRegFaceSadTear } from "react-icons/fa6";
 
 export const Products = () => {
     const { fetchProducts, products, updateProduct, deleteProduct } = useProductStore();
@@ -10,8 +11,7 @@ export const Products = () => {
     const [updatedProduct, setUpdatedProduct] = useState({
         name: "",
         price: "",
-        src: "",
-        category: "",
+        image: "",
     });
 
     // Fetch products on component mount
@@ -58,34 +58,36 @@ export const Products = () => {
             <p className="text-center font-semibold text-[50px] pt-[50px]">
                 Curated With Premium Products <br /> For Self-Care
             </p>
-            <div className="flex justify-between text-blue-500 hover:underline">
+            <div className="flex justify-between">
                 <div>
                 </div>
-                <a href="./create">Create new product</a>
+                <a href="./create">
+                <button className="border-none bg-[#afad55] text-white p-2 w-[10vw]">Create New Product</button>
+                </a>
             </div>
             <div className="grid grid-cols-3 gap-8 p-[70px]">
                 {products.map((item) => (
                     <div key={item._id} className="bg-white p-4 space-y-4 w-[25vw]">
                         <img
-                            src={item.src || "/default-image.jpg"}
+                            src={item.image || "/default-image.jpg"}
                             alt={item.name}
                             className="w-full h-[20vw] object-cover"
                         />
                         <hr />
                         <div className="flex justify-between">
                             <p>{item.name}</p>
-                            <p>{item.price}</p>
+                            <p>R{item.price}</p>
                         </div>
                         <div className="flex gap-4">
                             <button
                                 onClick={() => handleEditClick(item)}
-                                className="p-1 border-black border-2 w-full"
+                                className="border-none bg-[#afad55] text-white p-2 w-full"
                             >
                                 Edit
                             </button>
                             <button
                                 onClick={() => handleDeleteProduct(item._id)}
-                                className="p-1 border-black border-2 w-full"
+                                className="p-1 border-black border-[1px] w-full"
                             >
                                 Delete
                             </button>
