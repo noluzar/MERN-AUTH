@@ -19,10 +19,15 @@ export const Login = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate('/products');
+      if (userInfo.isAdmin) {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/userproducts");
+      }
+    } else {
+      console.log("No user logged in");
     }
   }, [navigate, userInfo]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -35,11 +40,11 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex items-center space-x-4 h-[100vh]">
-      <div className="w-[50%]">
+    <div className="flex items-center space-x-4">
+      <div className="lg:w-[50%] hidden lg:block">
         <img src="./Green.jpg" alt="Skin" className="w-full h-[100vh]" />
       </div>
-      <div className="w-[50%] flex flex-col gap-2 items-center space-y-4">
+      <div className="lg:w-[50%] flex flex-col gap-2 items-center space-y-4">
         <div>
           <h1 className="text-[60px]">Login to account</h1>
           <div className="flex gap-4 text-lg">

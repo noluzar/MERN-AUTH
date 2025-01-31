@@ -21,7 +21,7 @@ export const Register = () => {
 
   const { userInfo } = useSelector((state) => state.auth);
 
-  const [register, { isLoading }] = useRegisterMutation();
+  const [register] = useRegisterMutation();
 
   // useEffect(() => {
   //   if (userInfo) {
@@ -45,8 +45,8 @@ export const Register = () => {
   };
 
   return (
-    <div className="flex items-center space-x-4 h-[100vh] justify-between">
-      <div className="w-[50%] flex flex-col gap-2 items-center space-y-4">
+    <div className="flex items-center space-x-4 justify-between">
+      <div className="w-[50%] flex flex-col gap-2 items-center space-y-2">
         <div>
           <h1 className="text-[60px]">Create an account</h1>
           <div className="flex gap-4 text-lg">

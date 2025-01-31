@@ -7,7 +7,7 @@ import User from '../models/userModel.js';
 //@access Public
 
 const authUser = asyncHandler(async (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, isAdmin } = req.body;
 
     const user = await User.findOne({ email });
 
@@ -18,6 +18,7 @@ const authUser = asyncHandler(async (req, res) => {
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
+            isAdmin: user.isAdmin,
         });
     } else {
         res.status(401);
@@ -31,7 +32,7 @@ const authUser = asyncHandler(async (req, res) => {
 //@access Public
 
 const registerUser = asyncHandler(async (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, isAdmin } = req.body;
 
     const userExists = await User.findOne({ email });
     if (userExists) {
@@ -43,7 +44,8 @@ const registerUser = asyncHandler(async (req, res) => {
         firstName,
         lastName,
         email,
-        password
+        password,
+        isAdmin
     });
 
     if (user) {
@@ -52,7 +54,8 @@ const registerUser = asyncHandler(async (req, res) => {
             _id: user._id,
             firstName: user.firstName,
             lastName: user.lastName,
-            email: user.email
+            email: user.email,
+            isAdmin: user.isAdmin
         });
     } else {
         res.status(400);

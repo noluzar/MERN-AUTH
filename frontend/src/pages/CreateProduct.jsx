@@ -7,6 +7,7 @@ export const CreateProduct = () => {
     const [newProduct, setNewProduct] = useState({
         name: "",
         price: "",
+        description: "",
         image: "",
     });
 
@@ -35,7 +36,7 @@ export const CreateProduct = () => {
                 draggable: true,
             });
         }
-        setNewProduct({ name: "", price: "", image: ""});
+        setNewProduct({ name: "", price: "", description: "",  image: ""});
     };
 
     return (
@@ -73,6 +74,16 @@ export const CreateProduct = () => {
                             required
                         />
                         <input
+                            type="text"
+                            placeholder="Product Description"
+                            value={newProduct.description}
+                            onChange={(e) =>
+                                setNewProduct({ ...newProduct, description: e.target.value })
+                            }
+                            className="p-3 w-[60%] border rounded"
+                            required
+                        />
+                        <input
                             placeholder="Image URL"
                             value={newProduct.image}
                             onChange={(e) =>
@@ -83,14 +94,14 @@ export const CreateProduct = () => {
                         />
                         <button
                             type="submit"
-                            className="border-none bg-[#afad55] text-white p-2 w-[30vw]"
+                            className="border-none bg-[#afad55] text-white p-2 w-[60%]"
                         >
                             Create Product
                         </button>
                     </form>
                 </div>
-                <div className="w-[40%]">
-                    <img src="./vid.jpg" className="h-[100vh] w-full" alt="Product" />
+                <div className="w-[50%]">
+                    <img src="/vid.jpg" className="h-[100vh] w-full" alt="Product" />
                 </div>
             </div>
     );

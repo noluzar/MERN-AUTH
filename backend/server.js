@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from 'dotenv';
 import productRoutes from "./routes/product.route.js";
+import adminRoutes from './routes/adminRoutes.js'
 
 dotenv.config();
 import cookieParser from "cookie-parser";
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true}));
 
 app.use(cookieParser());
 
+app.use('/api/admin', adminRoutes);
 app.use("/api/products", productRoutes);
 app.use('/api/users', userRoutes);
 

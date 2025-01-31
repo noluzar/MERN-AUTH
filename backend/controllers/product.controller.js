@@ -4,7 +4,7 @@ import Product from "../models/product.model.js";
 export const createProduct = async (req, res) => {
     const product = req.body; //user will send this data
 
-    if (!product.name || !product.price || !product.image) {
+    if (!product.name || !product.price || !product.description || !product.image) {
         return res.status(400).json({ success: false, message: "Please provide all fields" });
     }
 
@@ -22,6 +22,16 @@ export const createProduct = async (req, res) => {
 export const getProducts = async (req, res) => {
     try {
         const products = await Product.find({});
+        res.status(200).json({ success: true, data: products });
+    } catch (error) {
+        console.log("error in fetching products:", error.message);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+};
+export const getProductsById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const products = await Product.findById(id);
         res.status(200).json({ success: true, data: products });
     } catch (error) {
         console.log("error in fetching products:", error.message);

@@ -1,29 +1,41 @@
 // import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const Home = () => {
+  const { userInfo } = useSelector((state) => state.auth);
+
   return (
-    <div className="flex items-center pl-[10%] h-[calc(100vh-72px)]">
-      <div className='w-[60%] px-4 space-y-4'>
-        <h1 className='text-[100px]'>Pure by Nature, <br />Perfect by You.</h1>
-        <p className='text-2xl w-[60%]'>Indulge in the pure essence of nature with our organic skincare line,
-          crafted with ingredients sourced directly from the earth.
-          Each product is thoughtfully formulated to nourish and rejuvenate your skin,
-          bringing out your natural radiance without harsh chemicals or artificial additives.
+    <div className="flex flex-col lg:flex-row items-center lg:pl-[10%] lg:px-0 space-y-8 lg:space-y-0 lg:space-x-6 h-[80vh]">
+      <div className="lg:w-[60%] pt-[5%] space-y-6 text-center lg:text-left">
+        <h1 className="text-4xl sm:text-6xl lg:text-[100px]">
+          Pure by Nature, <br /> Perfect by You.
+        </h1>
+        <p className="text-lg sm:text-xl lg:text-2xl lg:w-[80%] mx-auto lg:mx-0">
+          Indulge in the pure essence of nature with our organic skincare line,
+          crafted with ingredients sourced directly from the earth. Each product
+          is thoughtfully formulated to nourish and rejuvenate your skin,
+          bringing out your natural radiance without harsh chemicals or
+          artificial additives.
         </p>
         <div>
-          <Link to={'./products'}>
-            <button className='border-none bg-[#afad55] text-white p-[10px] w-[20%]'>View Products</button>
+          <Link
+            to={`${userInfo?.isAdmin ? "/admin/products" : "/userproducts"}`}
+            className="border-none bg-[#afad55] text-white py-2 px-6 sm:px-8 rounded-md hover:bg-[#9d9a4b] transition"
+          >
+            <button>View Products</button>
           </Link>
         </div>
       </div>
-      <div className='w-[40%] h-full'>
+
+      {/* Image Section */}
+      <div className="lg:w-[45%] lg:h-auto w-full">
         <img
           src="./skin.jpg"
-          className="w-full h-full object-cover"
+          alt="Skincare"
+          className="w-full h-[80vh] object-fill"
         />
-
       </div>
     </div>
-  )
-}
+  );
+};
