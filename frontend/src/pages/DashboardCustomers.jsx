@@ -1,39 +1,67 @@
 // import React from 'react'
 import { RiDeleteBin2Line } from "react-icons/ri";
+import { CiSearch } from "react-icons/ci";
 import { useEffect } from "react";
 import { useUserStore } from "../store/user.js";
-// import { useSelector } from 'react-redux';
-
+import { toast } from "react-toastify";
 
 const DashboardCustomers = () => {
-  const { fetchUsers, users } = useUserStore();
-//   const { userInfo } = useSelector((state) => state.auth);
+  const { fetchUsers, users, deleteUser } = useUserStore();
 
   useEffect(() => {
     fetchUsers();
   }, [fetchUsers]);
 
+  // Delete a user
+  const handleDeleteUser = async (pid) => {
+    const { success, message } = await deleteUser(pid);
+    if (success) {
+      toast.success("User deleted successfully");
+      fetchUsers();
+    } else {
+      toast.error(`Error: ${message}`);
+    }
+  };
+
   return (
-    <div className="pt-[55px] p-8 space-y-4">
-      <h1>Active Customers</h1>
-      <div className="flex justify-between items-end">
-        <p>Customer ID</p>
-        <p>First Name</p>
-        <p>Last Name</p>
-        <p>Email</p>
-        <p>Delete user</p>
+    <div className="bg-[#fdf4df] p-4 ">
+      <div className="flex items-start justify-between">
+        <h1 className="mb-4 text-xl font-semibold p-2">Active Customers</h1>
+        <div className="flex items-center gap-2 bg-[#f1e2c2] p-1 rounded-md border border-[#f1e2c2] w-[40%]">
+          <CiSearch />
+          <input
+            placeholder="search"
+            className="bg-transparent outline-none"
+          ></input>
+        </div>
       </div>
-      <hr/>
-      <div>
-        {users.map((item) => (
-          <div key={item._id} className="flex justify-between items-end">
-            <p>#{item._id}</p>
-            <p>{item.firstName}</p>
-            <p>{item.lastName}</p>
-            <p>{item.email}</p>
-            <p><RiDeleteBin2Line /></p>
-          </div>
-        ))}
+      <div className="overflow-x-auto bg-[#f1e2c2]">
+        <table className="w-full">
+          <thead>
+            <tr className="text-left">
+              <th className="p-3">Customer ID</th>
+              <th className="p-3">First Name</th>
+              <th className="p-3">Last Name</th>
+              <th className="p-3">Email</th>
+              <th className="p-3">Delete User</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((item) => (
+              <tr key={item._id} className="hover:bg-gray-50">
+                <td className="p-3">#{item._id}</td>
+                <td className="p-3">{item.firstName}</td>
+                <td className="p-3">{item.lastName}</td>
+                <td className="p-3">{item.email}</td>
+                <td className="p-3 text-center">
+                  <button onClick={() => handleDeleteUser(item._id)}>
+                    <RiDeleteBin2Line className="cursor-pointer text-[#afad55] size-6" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

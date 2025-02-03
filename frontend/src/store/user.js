@@ -47,7 +47,7 @@ export const useUserStore = create((set) => ({
     // Delete a user by ID
     deleteUser: async (userId) => {
         try {
-            const res = await fetch(`/api/users/${userId}`, {
+            const res = await fetch(`/api/admin/${userId}`, {
                 method: "DELETE",
             });
             const data = await res.json();

@@ -68,7 +68,7 @@ export const Products = () => {
             <div className="grid grid-cols-3 gap-8 p-[70px]">
                 {products.map((item) => (
                     <div key={item._id} className="bg-white p-2 space-y-4 w-auto">
-                        <Link to={"/details"}>
+                        <Link to={`/details/${item._id}`}>
                         <img
                             src={item.image || "/default-image.jpg"}
                             alt={item.name}
