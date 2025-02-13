@@ -1,21 +1,23 @@
 // import React from 'react'
 import { Navbar } from './components/Navbar'
-import { BrowserRouter as Router, Route, Routes  } from 'react-router-dom'
-import { Register } from './pages/Register'
-import { Footer } from './components/Footer'
-import { MainLayout } from './layout/MainLayout'
+// import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Route, Routes  } from 'react-router-dom';
+import { Register } from './pages/Register';
+import { Footer } from './components/Footer';
+import { MainLayout } from './layout/MainLayout';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Login } from './pages/Login'
-import { PrivateRoute } from './components/PrivateRoute'
+import { Login } from './pages/Login';
+import { PrivateRoute } from './components/PrivateRoute';
 import { Profile } from './pages/Profile';
-import { Products } from './pages/Products'
-import { CreateProduct } from './pages/CreateProduct'
-import AdminLayout from './layout/AdminLayout'
-import Dashboard from './pages/Dashboard'
-import { UserProducts } from './pages/UserProducts'
-import ProductDetails from './pages/ProductDetails'
-import DashboardCustomers from './pages/DashboardCustomers'
+import { Products } from './pages/Products';
+import { CreateProduct } from './pages/CreateProduct';
+import AdminLayout from './layout/AdminLayout';
+import Dashboard from './pages/Dashboard';
+import { UserProducts } from './pages/UserProducts';
+import ProductDetails from './pages/ProductDetails';
+import DashboardCustomers from './pages/DashboardCustomers';
+
 
 const App = () => {
   return (

@@ -26,21 +26,19 @@ const ProductDetails = () => {
         <IoIosArrowBack />
         <button>Back to products</button>
       </Link>
-      <div className="flex p-11 justify-center space-x-[100px] items-center h-[70vh]">
-        <div className="w-[40%] h-full">
-            <div key={product._id} className="h-[70vh]">
+      <div className="flex p-11 justify-center space-x-[100px] items-center h-[70vh] ">
+            <div key={product._id} className="h-[60vh] w-[40%] bg-[#f1e2c2] p-4">
               <img
                 src={product.image || "/default-image.jpg"}
                 alt={product.name}
                 className="w-full h-full object-fill"
               />
-            </div>
         </div>
-        <div className="w-[35%] h-full p-4 space-y-4">
-            <div key={product._id} className="space-y-4 text-md">
+        <div className="w-[40%] h-[60vh] p-4 space-y-4">
+            <div key={product._id} className="space-y-4 text-md h-full">
               <p className="text-3xl font-semibold">{product.name}</p>
               <p className="text-gray-500">{product._id}</p>
-              <div className="flex space-x-1 text-[#afad55] items-center">
+              <div className="flex space-x-2 text-[#afad55] items-center text-lg">
               <IoStarSharp />
               <IoStarSharp />
               <IoStarSharp />
@@ -50,16 +48,16 @@ const ProductDetails = () => {
               </div>
               <p className="text-xl">R{product.price}.00</p>
               <p>{product.description}</p>
-            </div>
-          <div className="flex space-x-4">
-          <div className="w-[50%] border-black border-[1px] text-center rounded-md text-lg">
+              <div className="flex space-x-4">
+          <div className="w-[50%] border-black border p-2 text-center text-lg">
                 <button>Buy Now</button>
               </div>
-              <div className="w-[50%] flex items-center space-x-4 text-white bg-[#afad55] p-2 justify-center rounded-md text-lg">
+              <div className="w-[50%] flex items-center space-x-4 text-white bg-[#afad55] p-2 justify-center text-lg">
                 <IoCartOutline />
                 <button>Add to cart</button>
               </div>
           </div>
+            </div>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import productRoutes from "./routes/product.route.js";
 import adminRoutes from './routes/adminRoutes.js'
 
+
 dotenv.config();
 import cookieParser from "cookie-parser";
 import { notFound, errorHandler } from "./middleware/errorMiddleWare.js"; 

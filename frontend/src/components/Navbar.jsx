@@ -1,12 +1,29 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../slices/usersApiSlice";
+import { removeFromCart } from "../slices/cartSlice";
+import { clearCart } from "../slices/cartSlice";
 import { logout } from "../slices/authSlices";
 import { useState } from "react";
 import { CgProfile } from "react-icons/cg";
+import { IoCartOutline } from "react-icons/io5";
 
 export const Navbar = () => {
   const { userInfo } = useSelector((state) => state.auth);
+  const [cartOpen, setCartOpen] = useState(false);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
+  const toggleCart = () => {
+    setCartOpen(!cartOpen);
+  };
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
+  };
+  const clearCartHandler = () => {
+    dispatch(clearCart()); // Dispatch the action to clear the cart
+  };
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,20 +45,15 @@ export const Navbar = () => {
   return (
     <div>
       <nav className="fixed h-[10vh] top-0 left-0 w-full bg-[#f1e2c2] p-4 z-10 flex items-center justify-between">
-        {/* Logo */}
         <div className="text-xl font-bold hidden lg:block w-[8%]">
           <img src="/ec.png" />
         </div>
-
-        {/* Menu Toggle for Small Screens */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="lg:hidden text-2xl text-[#afad55]"
         >
           ☰
         </button>
-
-        {/* Links */}
         <div
           className={`absolute lg:static top-full left-0 w-full lg:w-auto bg-[#f1e2c2] lg:bg-transparent p-4 lg:p-0 space-y-4 lg:space-y-0 lg:space-x-10 lg:flex ${
             menuOpen ? "block" : "hidden"
@@ -60,8 +72,6 @@ export const Navbar = () => {
             Contact
           </a>
         </div>
-
-        {/* User Profile */}
         {userInfo ? (
           <div className="relative flex items-center space-x-2">
             <CgProfile className="text-3xl text-[#afad55]" />
@@ -93,6 +103,58 @@ export const Navbar = () => {
                 </button>
               </div>
             )}
+            <div className="relative">
+              <button
+                className="bg-[#afad55] p-2 rounded-md text-white text-2xl"
+                onClick={toggleCart}
+              >
+                <IoCartOutline />
+                {totalItems > 0 && (
+                  <span className="absolute top-[-15px] right-[-15px] bg-[#afad55] text-white rounded-full text-xs px-2 py-1">
+                    {totalItems}
+                  </span>
+                )}
+              </button>
+              {cartOpen && (
+                <div className="absolute right-0 top-[70px] w-[400px] h-[80vh] bg-[#f1e2c2] shadow-lg p-4">
+                  <h2 className="font-bold text-lg mb-4">Your Cart</h2>
+                  <div className="flex justify-between items-center text-lg font-bold">
+                    <p>{totalItems} items</p>
+                    <button onClick={clearCartHandler}>Clear all</button>
+                  </div>
+                  {cartItems.length === 0 ? (
+                    <p>No items in the cart yet.</p>
+                  ) : (
+                    <Link to={" "}>
+                      {cartItems.map((item) => (
+                        <li
+                          key={item._id}
+                          className="flex justify-between items-center w-full pt-4 transition-all duration-300 ease-in-out hover:bg-[#f6e9db] hover:p-2"
+                        >
+                          <div className="flex items-center space-x-4">
+                            <img
+                              src={item.image}
+                              className="rounded-md w-16 h-16"
+                            />
+                            <div className="space-y-2">
+                              <p>{item.name}</p>
+                              <p>R{item.price}.00</p>
+                            </div>
+                          </div>
+                          <p className="text-sm bg-[#afad55] text-white p-2 rounded-md">{item.quantity}</p>
+                          <button
+                            onClick={() => removeFromCartHandler(item._id)}
+                            className="text-[#afad55]"
+                          >
+                            Remove
+                          </button>
+                        </li>
+                      ))}
+                    </Link>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         ) : (
           <div className="space-x-4 flex items-center">
@@ -102,7 +164,9 @@ export const Navbar = () => {
               </button>
             </Link>
             <Link to="/register">
-              <button className="border border-black px-4 py-2 w-[6vw]">Sign Up</button>
+              <button className="border border-black px-4 py-2 w-[6vw]">
+                Sign Up
+              </button>
             </Link>
           </div>
         )}
