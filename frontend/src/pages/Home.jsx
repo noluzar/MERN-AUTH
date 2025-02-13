@@ -28,7 +28,6 @@ export const Home = () => {
         </div>
       </div>
 
-      {/* Image Section */}
       <div className="lg:w-[45%] lg:h-auto w-full">
         <img
           src="./skin.jpg"

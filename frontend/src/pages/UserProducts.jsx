@@ -13,36 +13,35 @@ export const UserProducts = () => {
   }, [fetchProducts]);
 
   return (
-    <div className="p-11 pt-[60px]">
+    <div className="pt-[60px] h-screen space-y-4">
       <p className="text-center font-semibold text-[50px] pt-[50px]">
         Curated With Premium Products <br /> For Self-Care
       </p>
-      <div className="grid grid-cols-3 gap-8 p-[70px]">
-        {products.map((item, index) =>(
-          <Link to={`/details/${item._id}`} key={index} className="bg-[#f1e2c2] p-2 space-y-4 w-auto">
-            <img
-              src={item.image || "/default-image.jpg"}
-              alt={item.name}
-              className="w-full h-[20vw] object-cover"
-            />
-            <div className="flex justify-between">
-              <p>{item.name}</p>
-              <p>R{item.price}.00</p>
-            </div>
-            <hr />
-            <div className="flex gap-4">
-              <Link
-                to={""}
-                className="w-full flex justify-center space-x-4 items-center bg-[#afad55] p-2 text-white rounded-md hover:bg-[#9d9a4b] transition"
-              >
-                <IoCartOutline className="text-xl" />
-                <button>Add to cart</button>
-              </Link>
-            </div>
-          </Link>
-        ))}
-        
-      </div>
+     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+             {products.map((item, index) => (
+               <Link
+                 to={`/details/${item._id}`}
+                 key={index}
+                 className="bg-[#f1e2c2] p-4"
+               >
+                 <div className="flex items-center justify-center">
+                   <img
+                     src={item.image}
+                     alt={item.name}
+                     className="h-full w-full object-cover rounded-md"
+                   />
+                 </div>
+                 <div className="mt-4 flex justify-between items-center text-lg font-medium">
+                   <p>{item.name}</p>
+                   <p>R{item.price}.00</p>
+                 </div>
+                 <hr className="my-2" />
+                 <button className="w-full bg-[#afad55] py-2 text-white rounded-md hover:bg-[#9d9a4b] transition">
+                   Add to Cart
+                 </button>
+               </Link>
+             ))}
+           </div>
     </div>
   );
 };

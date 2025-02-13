@@ -1,34 +1,41 @@
-// import React from "react";
 import { FaLeaf } from "react-icons/fa";
 import { MdDoNotDisturbAlt } from "react-icons/md";
 import { BiSolidBadgeCheck } from "react-icons/bi";
 
 const WhyUs = () => {
   return (
-    <div className="space-y-4 p-[50px]">
-      <div className="flex flex-col items-center space-y-8 text-center">
-        <h1 className="text-3xl lg:text-5xl font-semibold">WHY ECOGLOW?</h1>
-        <p className="text-sm lg:text-lg w-[50%]">
+    <div className="space-y-8 px-6 py-12 lg:py-20 bg-[#f6e9db]">
+      <div className="flex flex-col items-center text-center space-y-4">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold">
+          WHY ECOGLOW?
+        </h1>
+        <p className="text-sm md:text-base lg:text-lg max-w-2xl">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           Exercitationem iste voluptas, veritatis beatae corporis illum nostrum
-          aut optio odit accusantium ullam soluta natus ratione maxime id animi
+          aut optio odit accusantium ullam soluta natus ratione maxime id animi.
         </p>
       </div>
-      <div className="flex justify-between space-x-2 py-4">
-        <div className="space-y-4 text-lg flex flex-col items-center text-center">
-          <FaLeaf className="size-[100px] text-[#afad55]" />
-            <p className="text-3xl lg:text-4xl">Natural</p>
-            <p>Yourself required no at thoughts<br/> delicate landlord it be</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+        <div className="space-y-4 flex flex-col items-center">
+          <FaLeaf className="size-16 md:size-20 lg:size-24 text-[#afad55]" />
+          <p className="text-2xl md:text-3xl lg:text-4xl">Natural</p>
+          <p className="text-sm md:text-base">
+            Yourself required no at thoughts delicate landlord it be.
+          </p>
         </div>
-        <div className="space-y-4 text-lg flex flex-col items-center text-center">
-          <MdDoNotDisturbAlt className="size-[100px] text-[#afad55]" />
-            <p className="text-3xl lg:text-4xl">No Side Effects</p>
-            <p>Yourself required no at thoughts <br/>delicate landlord it be</p>
+        <div className="space-y-4 flex flex-col items-center">
+          <MdDoNotDisturbAlt className="size-16 md:size-20 lg:size-24 text-[#afad55]" />
+          <p className="text-2xl md:text-3xl lg:text-4xl">No Side Effects</p>
+          <p className="text-sm md:text-base">
+            Yourself required no at thoughts delicate landlord it be.
+          </p>
         </div>
-        <div className="space-y-4 text-lg flex flex-col items-center text-center">
-          <BiSolidBadgeCheck className="size-[100px] text-[#afad55]" />
-            <p className="text-3xl lg:text-4xl">100% Organic</p>
-            <p>Yourself required no at thoughts <br/>delicate landlord it be</p>
+        <div className="space-y-4 flex flex-col items-center">
+          <BiSolidBadgeCheck className="size-16 md:size-20 lg:size-24 text-[#afad55]" />
+          <p className="text-2xl md:text-3xl lg:text-4xl">100% Organic</p>
+          <p className="text-sm md:text-base">
+            Yourself required no at thoughts delicate landlord it be.
+          </p>
         </div>
       </div>
     </div>

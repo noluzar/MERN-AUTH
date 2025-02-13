@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import DashboardProducts from "../components/DashboardProducts";
 
 const StatCard = ({ title, value }) => (
-  <div className="bg-[#afad55] w-[20%] text-3xl text-white p-4 space-y-2">
+  <div className="bg-[#afad55] w-[20%] text-3xl text-white p-4">
     <div className="flex items-center gap-2">
       <IoBagAddOutline />
       <p>{title}</p>
@@ -26,8 +26,8 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="pt-[50px] p-8 my-2">
-      <div className="space-y-4">
+    <div className="p-2">
+      <div className="space-y-2 p-2">
         <div className="space-y-4">
           <h1 className="font-semibold text-3xl">{`${userInfo?.firstName || ''} ${userInfo?.lastName || ''}`.trim()}</h1>
           <h3 className="text-lg">Hello Admin, Welcome back!</h3>

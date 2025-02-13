@@ -24,10 +24,11 @@ const DashboardCustomers = () => {
   };
 
   return (
-    <div className="bg-[#fdf4df] p-4 ">
-      <div className="flex items-start justify-between">
+    <div className="p-2">
+      <div className="bg-[#f1e2c2] p-4 ">
+        <div className="flex items-start justify-between">
         <h1 className="mb-4 text-xl font-semibold p-2">Active Customers</h1>
-        <div className="flex items-center gap-2 bg-[#f1e2c2] p-1 rounded-md border border-[#f1e2c2] w-[40%]">
+        <div className="flex items-center gap-2 bg-[#fdf4df] p-1 rounded-md border border-[#f1e2c2] w-[40%]">
           <CiSearch />
           <input
             placeholder="search"
@@ -35,7 +36,7 @@ const DashboardCustomers = () => {
           ></input>
         </div>
       </div>
-      <div className="overflow-x-auto bg-[#f1e2c2]">
+      <div className="overflow-x-auto bg-[#fdf4df]">
         <table className="w-full">
           <thead>
             <tr className="text-left">
@@ -54,14 +55,13 @@ const DashboardCustomers = () => {
                 <td className="p-3">{item.lastName}</td>
                 <td className="p-3">{item.email}</td>
                 <td className="p-3 text-center">
-                  <button onClick={() => handleDeleteUser(item._id)}>
-                    <RiDeleteBin2Line className="cursor-pointer text-[#afad55] size-6" />
-                  </button>
+                    <RiDeleteBin2Line className="cursor-pointer text-[#afad55] size-6 " onClick={() => handleDeleteUser(item._id)} />
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
       </div>
     </div>
   );

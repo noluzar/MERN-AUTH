@@ -23,11 +23,6 @@ export const Register = () => {
 
   const [register] = useRegisterMutation();
 
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     navigate('/');
-  //   }
-  // }, [navigate, userInfo]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,8 +40,9 @@ export const Register = () => {
   };
 
   return (
-    <div className="flex items-center space-x-4 justify-between">
-      <div className="w-[50%] flex flex-col gap-2 items-center space-y-2">
+    <div className="flex items-center justify-between">
+      <div></div>
+      <div className="w-[30%] flex flex-col space-y-4">
         <div>
           <h1 className="text-[60px]">Create an account</h1>
           <div className="flex gap-4 text-lg">
@@ -56,8 +52,8 @@ export const Register = () => {
             </Link>
           </div>
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-center w-full">
-          <div className="flex justify-between w-[60%] space-x-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div className="flex justify-between space-x-4">
             <input
               type="text"
               placeholder="First name"
@@ -80,7 +76,7 @@ export const Register = () => {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="p-3 w-[60%] border rounded"
+            className="p-3 border rounded"
             required
           />
           <input
@@ -88,7 +84,7 @@ export const Register = () => {
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="p-3 w-[60%] border rounded"
+            className="p-3 border rounded"
             required
           />
           <input
@@ -96,7 +92,7 @@ export const Register = () => {
             placeholder="Confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="p-3 w-[60%] border rounded"
+            className="p-3 border rounded"
             required
           />
           <div className="flex items-center gap-2">
@@ -110,7 +106,7 @@ export const Register = () => {
           </div>
           <button
             type="submit"
-            className="border-2 border-none bg-[#afad55] p-2 w-[30vw] text-white"
+            className="border-2 border-none bg-[#afad55] p-2 text-white"
           >
             Create account
           </button>
@@ -121,17 +117,17 @@ export const Register = () => {
           <hr className="w-[20%]" />
         </div>
         <div className="flex space-x-2">
-          <button className="flex items-center gap-2 border-2 border-black p-2 w-[15vw] justify-center text-lg">
+          <button className="flex items-center gap-2 border-2 border-black p-2 w-full justify-center text-lg">
             <FcGoogle className="size-7" />
             Google
           </button>
-          <button className="flex items-center gap-2 border-2 border-black p-2 w-[15vw] justify-center text-lg">
+          <button className="flex items-center gap-2 border-2 border-black p-2 w-full justify-center text-lg">
             <FaApple className="size-7" />
             Apple
           </button>
         </div>
       </div>
-      <div className="w-[40%]">
+      <div className="w-[50%]">
         <img src="./facee.jpg" alt="Skin" className="w-full h-[100vh] object-cover" />
       </div>
     </div>

@@ -40,11 +40,11 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex items-center space-x-[10%]">
       <div className="lg:w-[50%] hidden lg:block">
         <img src="./Green.jpg" alt="Skin" className="w-full h-[100vh]" />
       </div>
-      <div className="lg:w-[50%] flex flex-col gap-2 items-center space-y-4">
+      <div className="lg:w-[50%] flex flex-col gap-2 space-y-4">
         <div>
           <h1 className="text-[60px]">Login to account</h1>
           <div className="flex gap-4 text-lg">
@@ -54,13 +54,13 @@ export const Login = () => {
             </Link>
           </div>
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-center w-full">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-[30vw]">
           <input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="p-3 w-[60%] border rounded"
+            className="p-3 border rounded outline-none"
             required
           />
           <input
@@ -68,10 +68,10 @@ export const Login = () => {
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="p-3 w-[60%] border rounded"
+            className="p-3 border rounded outline-none"
             required
           />
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 py-2">
             <FaCheckSquare />
             <p>
               I agree to the{" "}
@@ -84,10 +84,10 @@ export const Login = () => {
             Login
           </button>
         </form>
-        <div className="flex items-center gap-2 w-full justify-center">
-          <hr className="w-[20%]" />
+        <div className="flex gap-2 w-[30vw] justify-between p-2">
+          <hr />
           <p>Or login with</p>
-          <hr className="w-[20%]" />
+          <hr />
         </div>
         <div className="flex space-x-2">
           <button className="flex items-center gap-2 border-2 border-black p-2 w-[15vw] justify-center text-lg">
