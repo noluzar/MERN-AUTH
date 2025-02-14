@@ -1,14 +1,22 @@
-import { React, useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../slices/cartSlice";
 import { useProductStore } from "../store/product";
 
 const Shop = () => {
   const { fetchProducts, products } = useProductStore();
 
+  const dispatch = useDispatch();
+
   // Fetch products on component mount
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
+
+  const addToCartHandler = (item) => {
+      dispatch(addToCart(item));
+    };
 
   return (
     <div className="space-y-12 px-6 py-12 lg:py-20 bg-[#f1e2c2]">
@@ -33,7 +41,9 @@ const Shop = () => {
               <p>R{item.price}.00</p>
             </div>
             <hr className="my-2" />
-            <button className="w-full bg-[#afad55] py-2 text-white hover:bg-[#9d9a4b]">
+            <button className="w-full bg-[#afad55] py-2 text-white hover:bg-[#9d9a4b]" 
+            onClick={() => addToCartHandler(item)}
+            >
               Add to Cart
             </button>
           </div>

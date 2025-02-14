@@ -1,36 +1,71 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../slices/usersApiSlice";
-import { removeFromCart } from "../slices/cartSlice";
-import { clearCart } from "../slices/cartSlice";
+import {
+  removeFromCart,
+  clearCart,
+  increaseQuantity,
+  decreaseQuantity,
+} from "../slices/cartSlice"; // Import increase & decrease actions
+import { useProductStore } from "../store/product";
 import { logout } from "../slices/authSlices";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { CgProfile } from "react-icons/cg";
-import { IoCartOutline } from "react-icons/io5";
+import { IoCartOutline, IoClose } from "react-icons/io5";
 
 export const Navbar = () => {
+  const { fetchProducts } = useProductStore();
   const { userInfo } = useSelector((state) => state.auth);
   const [cartOpen, setCartOpen] = useState(false);
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const cartRef = useRef(null);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const toggleCart = () => {
     setCartOpen(!cartOpen);
   };
+
+  // Handlers
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
   };
+
   const clearCartHandler = () => {
-    dispatch(clearCart()); // Dispatch the action to clear the cart
+    dispatch(clearCart());
   };
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const increaseQuantityHandler = (id) => {
+    dispatch(increaseQuantity(id));
+  };
+
+  const decreaseQuantityHandler = (id) => {
+    dispatch(decreaseQuantity(id));
+  };
 
   const [logoutApiCall] = useLogoutMutation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (cartRef.current && !cartRef.current.contains(event.target)) {
+        setCartOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   const logoutHandler = async () => {
     try {
@@ -46,7 +81,7 @@ export const Navbar = () => {
     <div>
       <nav className="fixed h-[10vh] top-0 left-0 w-full bg-[#f1e2c2] p-4 z-10 flex items-center justify-between">
         <div className="text-xl font-bold hidden lg:block w-[8%]">
-          <img src="/ec.png" />
+          <img src="/ec.png" alt="Logo" />
         </div>
         <button
           onClick={() => setMenuOpen(!menuOpen)}
@@ -103,58 +138,92 @@ export const Navbar = () => {
                 </button>
               </div>
             )}
-            <div className="relative">
-              <button
-                className="bg-[#afad55] p-2 rounded-md text-white text-2xl"
-                onClick={toggleCart}
-              >
-                <IoCartOutline />
-                {totalItems > 0 && (
-                  <span className="absolute top-[-15px] right-[-15px] bg-[#afad55] text-white rounded-full text-xs px-2 py-1">
-                    {totalItems}
-                  </span>
-                )}
-              </button>
-              {cartOpen && (
-                <div className="absolute right-0 top-[70px] w-[400px] h-[80vh] bg-[#f1e2c2] shadow-lg p-4">
-                  <h2 className="font-bold text-lg mb-4">Your Cart</h2>
-                  <div className="flex justify-between items-center text-lg font-bold">
-                    <p>{totalItems} items</p>
-                    <button onClick={clearCartHandler}>Clear all</button>
-                  </div>
-                  {cartItems.length === 0 ? (
-                    <p>No items in the cart yet.</p>
-                  ) : (
-                    <Link to={" "}>
-                      {cartItems.map((item) => (
-                        <li
-                          key={item._id}
-                          className="flex justify-between items-center w-full pt-4 transition-all duration-300 ease-in-out hover:bg-[#f6e9db] hover:p-2"
-                        >
-                          <div className="flex items-center space-x-4">
-                            <img
-                              src={item.image}
-                              className="rounded-md w-16 h-16"
-                            />
-                            <div className="space-y-2">
-                              <p>{item.name}</p>
-                              <p>R{item.price}.00</p>
-                            </div>
-                          </div>
-                          <p className="text-sm bg-[#afad55] text-white p-2 rounded-md">{item.quantity}</p>
-                          <button
-                            onClick={() => removeFromCartHandler(item._id)}
-                            className="text-[#afad55]"
-                          >
-                            Remove
-                          </button>
-                        </li>
-                      ))}
-                    </Link>
+            {userInfo &&
+              !userInfo.isAdmin && ( // Hide cart if admin is logged in
+                <div className="relative">
+                  <button
+                    className="bg-[#afad55] p-2 rounded-md text-white text-2xl"
+                    onClick={toggleCart}
+                  >
+                    <IoCartOutline />
+                    {totalItems > 0 && (
+                      <span className="absolute top-[-15px] right-[-15px] bg-[#afad55] text-white rounded-full text-xs px-2 py-1">
+                        {totalItems}
+                      </span>
+                    )}
+                  </button>
+                  {cartOpen && (
+                    <div
+                      ref={cartRef}
+                      className="absolute right-0 top-[70px] w-[400px] h-[80vh] bg-[#f1e2c2] shadow-lg p-4"
+                    >
+                      <div className="flex justify-between text-lg">
+                        <h2 className="font-bold text-lg mb-4">Your Cart</h2>
+                        <IoClose
+                          className="cursor-pointer"
+                          onClick={() => setCartOpen(false)}
+                        />
+                      </div>
+                      <div className="flex justify-between items-center text-lg font-bold">
+                        <p>{totalItems} items</p>
+                        <button onClick={clearCartHandler}>Clear all</button>
+                      </div>
+                      {cartItems.length === 0 ? (
+                        <p>No items in the cart yet.</p>
+                      ) : (
+                        <ul>
+                          {cartItems.map((item) => (
+                            <li key={item._id} className="pt-4">
+                              <div className="flex justify-between items-center w-full">
+                                <Link
+                                  to={`/details/${item._id}`}
+                                  className="flex items-center space-x-4"
+                                >
+                                  <img
+                                    src={item.image}
+                                    className="rounded-md w-16 h-16"
+                                    alt={item.name}
+                                  />
+                                </Link>
+                                <div>
+                                  <p>{item.name}</p>
+                                  <p>R{item.price}.00</p>
+                                </div>
+                                <div className="flex items-center">
+                                  <button
+                                    onClick={() =>
+                                      decreaseQuantityHandler(item._id)
+                                    }
+                                    className="px-2 bg-[#afad55] text-white"
+                                  >
+                                    -
+                                  </button>
+                                  <p className="px-2">{item.quantity}</p>
+                                  <button
+                                    onClick={() =>
+                                      increaseQuantityHandler(item._id)
+                                    }
+                                    className="px-2 bg-[#afad55] text-white"
+                                  >
+                                    +
+                                  </button>
+                                </div>
+                                <button
+                                  onClick={() =>
+                                    removeFromCartHandler(item._id)
+                                  }
+                                >
+                                  Remove
+                                </button>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                   )}
                 </div>
               )}
-            </div>
           </div>
         ) : (
           <div className="space-x-4 flex items-center">

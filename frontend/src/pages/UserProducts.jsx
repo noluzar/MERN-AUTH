@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useProductStore } from "../store/product";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../slices/cartSlice"; // Import addToCart action
+import { addToCart } from "../slices/cartSlice";
 import { Link } from "react-router-dom";
 
 export const UserProducts = () => {
@@ -16,7 +16,7 @@ export const UserProducts = () => {
   }, [fetchProducts]);
 
   const addToCartHandler = (item) => {
-    dispatch(addToCart(item)); // Dispatch addToCart with the product
+    dispatch(addToCart(item));
   };
 
   return (
@@ -40,7 +40,7 @@ export const UserProducts = () => {
             </div>
             <hr className="my-2" />
             <button
-              onClick={() => addToCartHandler(item)} // Call the handler to add item to the cart
+              onClick={() => addToCartHandler(item)}
               className="w-full bg-[#afad55] py-2 text-white rounded-md hover:bg-[#9d9a4b] transition"
             >
               Add to Cart
