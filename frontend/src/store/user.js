@@ -22,7 +22,7 @@ export const useUserStore = create((set) => ({
             set({ loading: false });
         }
     },
-
+    
     // Create a new user
     createUser: async (newUser) => {
         if (!newUser.name || !newUser.email) {

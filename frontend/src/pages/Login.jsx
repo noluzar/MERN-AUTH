@@ -28,6 +28,7 @@ export const Login = () => {
       console.log("No user logged in");
     }
   }, [navigate, userInfo]);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

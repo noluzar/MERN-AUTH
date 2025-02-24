@@ -26,6 +26,10 @@ const AdminDashboard = () => {
             <MdOutlinePeopleAlt className="size-6 text-[#afad55]" />
             <p>Customers</p>
           </Link>
+          <Link to={"customers"} className="flex items-center space-x-2 p-2">
+            <MdOutlinePeopleAlt className="size-6 text-[#afad55]" />
+            <p>Orders</p>
+          </Link>
         </div>
         <div className="bg-[#f1e2c2] h-[45vh] p-4 space-y-4">
         <p>SUPPORT</p>

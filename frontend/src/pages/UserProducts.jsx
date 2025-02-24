@@ -1,5 +1,3 @@
-// src/components/UserProducts.jsx
-
 import { useEffect } from "react";
 import { useProductStore } from "../store/product";
 import { useDispatch } from "react-redux";
@@ -31,14 +29,14 @@ export const UserProducts = () => {
               <img
                 src={item.image}
                 alt={item.name}
-                className="object-cover rounded-md"
+                className="object-cover h-[30vh] w-full"
               />
             </Link>
             <div className="mt-4 flex justify-between items-center text-lg font-medium">
               <p>{item.name}</p>
               <p>R{item.price}.00</p>
             </div>
-            <hr className="my-2" />
+            <hr className="my-2 text-black" />
             <button
               onClick={() => addToCartHandler(item)}
               className="w-full bg-[#afad55] py-2 text-white rounded-md hover:bg-[#9d9a4b] transition"

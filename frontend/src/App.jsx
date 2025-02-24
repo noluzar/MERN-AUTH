@@ -1,6 +1,5 @@
 // import React from 'react'
 import { Navbar } from './components/Navbar'
-// import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Route, Routes  } from 'react-router-dom';
 import { Register } from './pages/Register';
 import { Footer } from './components/Footer';
@@ -17,6 +16,9 @@ import Dashboard from './pages/Dashboard';
 import { UserProducts } from './pages/UserProducts';
 import ProductDetails from './pages/ProductDetails';
 import DashboardCustomers from './pages/DashboardCustomers';
+import Checkout from './pages/Checkout';
+import OrderSummary from './pages/OrderSummary';
+import OrderHistory from './pages/OrderHistory';
 
 
 const App = () => {
@@ -39,6 +41,9 @@ const App = () => {
             <Route path='/userproducts' element={<UserProducts />}/>
             <Route path='/details/:id' element={<ProductDetails />}/>
             <Route path='/profile' element={<Profile />}/>
+            <Route path='/checkout' element={<Checkout />}/>
+            <Route path='/ordersummary' element={<OrderSummary />}/>
+            <Route path='/orderhistory' element={<OrderHistory />}/>
           </Route>
         </Routes>
         <Footer/>

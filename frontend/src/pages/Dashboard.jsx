@@ -3,9 +3,10 @@ import DashboardCustomers from "./DashboardCustomers";
 import Calendar from "../components/Calendar";
 import { useSelector } from 'react-redux';
 import DashboardProducts from "../components/DashboardProducts";
+import { useEffect, useState } from "react";
 
 const StatCard = ({ title, value }) => (
-  <div className="bg-[#afad55] w-[20%] text-3xl text-white p-4">
+  <div className="bg-[#afad55] w-full text-2xl text-white p-4">
     <div className="flex items-center gap-2">
       <IoBagAddOutline />
       <p>{title}</p>
@@ -17,12 +18,41 @@ const StatCard = ({ title, value }) => (
 const Dashboard = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
+  const [dashboardStats, setDashboardStats] = useState({
+    totalOrders: 0,
+    totalCustomers: 0,
+    totalSales: 0,
+    totalProducts: 0, 
+  });
+
+  useEffect(() => {
+    const fetchDashboardStats = async () => {
+      try {
+        const response = await fetch('/api/dashboard/stats');
+        const data = await response.json();
+        if (response.ok) {
+          setDashboardStats({
+            totalOrders: data.totalOrders,
+            totalCustomers: data.totalCustomers,
+            totalSales: data.totalSales,
+            totalProducts: 0,
+          });
+        } else {
+          console.error("Error fetching dashboard stats:", data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching dashboard stats:", error);
+      }
+    };
+
+    fetchDashboardStats();
+  }, []);
+
   const stats = [
-    { title: "Total Sales", value: "R0" },
-    { title: "Total Sales", value: "R0" },
-    { title: "Total Sales", value: "R0" },
-    { title: "Visitors", value: "R0" },
-    { title: "Total Orders", value: "R0" },
+    { title: "Total Orders", value: `${dashboardStats.totalOrders}` },
+    { title: "Total Customers", value: `${dashboardStats.totalCustomers}` },
+    { title: "Total Sales", value: `R${dashboardStats.totalSales.toFixed(2)}` },
+    { title: "Total Products", value: `${dashboardStats.totalProducts}` },
   ];
 
   return (
