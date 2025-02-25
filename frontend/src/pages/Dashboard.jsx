@@ -4,15 +4,16 @@ import Calendar from "../components/Calendar";
 import { useSelector } from 'react-redux';
 import DashboardProducts from "../components/DashboardProducts";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const StatCard = ({ title, value }) => (
-  <div className="bg-[#afad55] w-full text-2xl text-white p-4">
+  <Link className="bg-[#afad55] w-full text-2xl text-white p-4">
     <div className="flex items-center gap-2">
       <IoBagAddOutline />
       <p>{title}</p>
     </div>
     <p>{value}</p>
-  </div>
+  </Link>
 );
 
 const Dashboard = () => {
@@ -58,21 +59,23 @@ const Dashboard = () => {
   return (
     <div className="p-2">
       <div className="space-y-2 p-2">
-        <div className="space-y-4">
+        <div className="">
           <h1 className="font-semibold text-3xl">{`${userInfo?.firstName || ''} ${userInfo?.lastName || ''}`.trim()}</h1>
           <h3 className="text-lg">Hello Admin, Welcome back!</h3>
         </div>
-        <div className="flex space-x-4">
+        <div className="flex space-x-2">
           {stats.map((stat, index) => (
             <StatCard key={index} title={stat.title} value={stat.value} />
           ))}
         </div>
-        <div className="flex space-x-4">
+        <div className="flex space-x-2">
           <Calendar />
           <DashboardProducts />
         </div>
       </div>
+      <Link to={'/admin/customers'}>
       <DashboardCustomers />
+      </Link>
     </div>
   );
 };

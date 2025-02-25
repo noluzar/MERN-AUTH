@@ -19,6 +19,7 @@ import DashboardCustomers from './pages/DashboardCustomers';
 import Checkout from './pages/Checkout';
 import OrderSummary from './pages/OrderSummary';
 import OrderHistory from './pages/OrderHistory';
+import Orders from './components/Orders';
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
               <Route path='products' element={<Products />}/>
               <Route path='create' element={<CreateProduct />}/>
               <Route path='customers' element={<DashboardCustomers />}/>
+              <Route path='orders' element={<Orders />}/>
             </Route>
             <Route path='/userproducts' element={<UserProducts />}/>
             <Route path='/details/:id' element={<ProductDetails />}/>

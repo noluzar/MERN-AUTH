@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 const DashboardProducts = () => {
   const { fetchProducts, products, deleteProduct } = useProductStore();
 
-  // Delete a product
   const handleDeleteProduct = async (pid) => {
     const { success, message } = await deleteProduct(pid);
     if (success) {
@@ -24,7 +23,7 @@ const DashboardProducts = () => {
     fetchProducts();
   }, [fetchProducts]);
   return (
-    <div className="w-full bg-[#f1e2c2] p-4 my-4">
+    <div className="w-full bg-[#f1e2c2] p-4">
       <div className="flex items-start justify-between">
         <h1 className="mb-4 text-xl font-semibold p-2">Top Products</h1>
         <div className="flex items-center gap-2 bg-[#fdf4df] p-1 rounded-md border border-[#f1e2c2] w-[50%]">

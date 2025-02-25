@@ -16,7 +16,7 @@ const Calendar = () => {
   const days = eachDayOfInterval({ start: startDate, end: endDate });
 
   return (
-    <div className="my-4 p-4 bg-[#afad55] text-white shadow-lg  w-full">
+    <div className="p-4 bg-[#afad55] text-white shadow-lg  w-full">
       <div className="flex justify-between items-center mb-4">
         <button onClick={prevMonth} className="text-white hover:text-gray-200">
           <IoChevronBack size={24} />

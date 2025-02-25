@@ -1,7 +1,7 @@
 // slices/orderApiSlice.js
 import { apiSlice } from "./apiSlice";
 
-export const orderApiSlice = apiSlice.injectEndpoints({
+export const orderSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     placeOrder: builder.mutation({
       query: (orderData) => ({
@@ -10,10 +10,13 @@ export const orderApiSlice = apiSlice.injectEndpoints({
         body: orderData,
       }),
     }),
-    getOrders: builder.query({
-      query: () => "/api/orders",
+    getAllOrders: builder.query({
+      query: () => ({
+        url: "/api/orders",
+        method: "GET",
+      }),
     }),
   }),
 });
 
-export const { usePlaceOrderMutation, useGetOrdersQuery } = orderApiSlice;
+export const { usePlaceOrderMutation, useGetAllOrdersQuery } = orderSlice;

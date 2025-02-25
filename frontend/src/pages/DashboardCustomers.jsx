@@ -24,7 +24,7 @@ const DashboardCustomers = () => {
   };
 
   return (
-    <div className="p-2">
+    <div className="px-1">
       <div className="bg-[#f1e2c2] p-4 ">
         <div className="flex items-start justify-between">
         <h1 className="mb-4 text-xl font-semibold p-2">Active Customers</h1>
