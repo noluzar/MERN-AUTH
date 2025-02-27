@@ -34,6 +34,10 @@ const OrderHistory = () => {
     return <p>{error}</p>;
   }
 
+  const handleCancel = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="pt-[100px] p-4 space-y-6">
       <div className="text-center space-y-2 p-2">
@@ -91,7 +95,14 @@ const OrderHistory = () => {
             </div>
           ))
         )}
+        <button
+          onClick={handleCancel}
+          className="p-2 border border-black w-[200px] text-lg"
+        >
+          Back
+        </button>
       </div>
+      
     </div>
   );
 };

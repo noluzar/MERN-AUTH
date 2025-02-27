@@ -57,7 +57,7 @@ export const Navbar = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (cartRef.current && !cartRef.current.contains(event.target)) {
-        setCartOpen(false);
+        setCartOpen(true);
       }
     };
 
@@ -84,15 +84,22 @@ export const Navbar = () => {
   return (
     <div>
       <nav className="fixed h-[10vh] top-0 left-0 w-full bg-[#f1e2c2] p-4 z-10 flex items-center justify-between">
-        <div className="text-xl font-bold hidden lg:block w-[8%]">
+        {/* Logo wrapper */}
+        <div
+          className={`text-xl font-bold hidden lg:block w-[8%] ${menuOpen ? "flex justify-center w-full" : ""}`}
+        >
           <img src="/ec.png" alt="Logo" />
         </div>
+
+        {/* Hamburger menu button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="lg:hidden text-2xl text-[#afad55]"
         >
           ☰
         </button>
+
+        {/* Menu items */}
         <div
           className={`absolute lg:static top-full left-0 w-full lg:w-auto bg-[#f1e2c2] lg:bg-transparent p-4 lg:p-0 space-y-4 lg:space-y-0 lg:space-x-10 lg:flex ${
             menuOpen ? "block" : "hidden"
@@ -111,6 +118,8 @@ export const Navbar = () => {
             Contact
           </a>
         </div>
+
+        {/* User or cart options */}
         {userInfo ? (
           <div className="relative flex items-center space-x-2">
             <CgProfile className="text-3xl text-[#afad55]" />
@@ -118,9 +127,7 @@ export const Navbar = () => {
               onClick={() => setDropdownOpen(!dropdownOpen)}
               className="bg-[#afad55] text-white px-4 py-2 rounded-md"
             >
-              {`${userInfo?.firstName || ""} ${
-                userInfo?.lastName || ""
-              }`.trim()}
+              {`${userInfo?.firstName || ""} ${userInfo?.lastName || ""}`.trim()}
             </button>
             {dropdownOpen && (
               <div className="absolute p-2 top-11 right-0 w-44 bg-white border border-gray-200 rounded-md shadow-lg">
@@ -141,13 +148,14 @@ export const Navbar = () => {
                   Logout
                 </button>
                 {userInfo && !userInfo.isAdmin && (
-                <Link
-                  to="/orderhistory"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  onClick={() => setDropdownOpen(false)}
-                >
-                  Orders
-                </Link>)}
+                  <Link
+                    to="/orderhistory"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    Orders
+                  </Link>
+                )}
               </div>
             )}
             {userInfo && !userInfo.isAdmin && (

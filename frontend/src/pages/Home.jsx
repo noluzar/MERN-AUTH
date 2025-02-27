@@ -1,4 +1,3 @@
-// import React from 'react'
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -6,7 +5,7 @@ export const Home = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
   return (
-    <div className="flex flex-col lg:flex-row items-center lg:pl-[10%] lg:px-0 space-y-8 lg:space-y-0 lg:space-x-6 h-[80vh]">
+    <div className="flex flex-col lg:flex-row items-center lg:pl-[10%] lg:px-0 space-y-8 lg:space-y-0 lg:space-x-6 sm:pt-[50px]">
       <div className="lg:w-[60%] pt-[5%] space-y-6 text-center lg:text-left">
         <h1 className="text-4xl sm:text-6xl lg:text-[100px]">
           Pure by Nature, <br /> Perfect by You.

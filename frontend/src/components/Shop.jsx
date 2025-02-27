@@ -15,15 +15,15 @@ const Shop = () => {
   }, [fetchProducts]);
 
   const addToCartHandler = (item) => {
-      dispatch(addToCart(item));
-    };
+    dispatch(addToCart(item));
+  };
 
   return (
     <div className="space-y-12 px-6 py-12 lg:py-20 bg-[#f1e2c2]">
       <h1 className="text-3xl lg:text-5xl text-center font-semibold">
         SHOP OUR PRODUCTS
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
         {products.map((item, index) => (
           <div
             key={index}

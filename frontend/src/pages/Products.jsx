@@ -65,22 +65,21 @@ export const Products = () => {
 
   return (
     <div className="p-4 space-y-4">
-      <p className="text-center font-semibold text-[50px]">
+      <p className="text-center font-semibold text-3xl md:text-4xl lg:text-5xl">
         Curated With Premium Products <br /> For Self-Care
       </p>
-      <div className="flex justify-between">
-        <div></div>
+      <div className="flex justify-end">
         <a href="./create">
-          <button className="border-none rounded-md bg-[#afad55] text-white p-2 w-[10vw]">
+          <button className="border-none bg-[#afad55] text-white p-2 w-full sm:w-auto">
             Create New Product
           </button>
         </a>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
         {products.map((item) => (
           <div
             key={item._id}
-            className="bg-[#f1e2c2] p-4 space-y-6 min-h-[40vh]"
+            className="bg-[#f1e2c2] p-4 space-y-4 min-h-[40vh] md:w-[20vw]"
           >
             <Link to={`/details/${item._id}`} className="block">
               <img
@@ -88,13 +87,13 @@ export const Products = () => {
                 alt={item.name}
                 className="w-full h-52 object-cover"
               />
-              <div className="mt-2 flex justify-between text-lg font-semibold">
+              <div className="mt-2 flex justify-between text-base md:text-lg font-semibold">
                 <p>{item.name}</p>
                 <p>R{item.price}</p>
               </div>
             </Link>
             <hr />
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
               <button
                 onClick={() => handleEditClick(item)}
                 className="bg-[#afad55] text-white p-2 w-full hover:bg-[#9d9a4b]"
@@ -123,9 +122,9 @@ export const Products = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-lg shadow-lg w-[600px] p-6">
-            <h2 className="text-2xl font-bold mb-4">Edit Product</h2>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 p-4">
+          <div className="bg-white shadow-lg w-full sm:w-[500px] p-6">
+            <h2 className="text-xl sm:text-2xl font-bold mb-4">Edit Product</h2>
             <input
               type="text"
               value={updatedProduct.name}
@@ -154,7 +153,7 @@ export const Products = () => {
                 })
               }
               placeholder="Product Description"
-              className="border p-2 w-full mb-4"
+              className="border p-2 w-full mb-4 rounded-md"
             />
             <input
               type="text"
@@ -163,12 +162,12 @@ export const Products = () => {
                 setUpdatedProduct({ ...updatedProduct, src: e.target.value })
               }
               placeholder="Image URL"
-              className="border p-2 w-full mb-4"
+              className="border p-2 w-full mb-4 rounded-md"
             />
-            <div className="flex justify-end gap-4">
+            <div className="flex flex-col sm:flex-row justify-end gap-4">
               <button
                 onClick={handleSaveEdit}
-                className="bg-[#afad55] text-white px-4 py-2 rounded w-[30%]"
+                className="bg-[#afad55] text-white px-4 py-2 rounded-md w-full sm:w-[30%]"
               >
                 Save
               </button>
@@ -183,7 +182,7 @@ export const Products = () => {
                     category: "",
                   });
                 }}
-                className="border-black text-black border-2 px-4 py-2 rounded w-[30%]"
+                className="border-black text-black border-2 px-4 py-2 rounded-md w-full sm:w-[30%]"
               >
                 Cancel
               </button>

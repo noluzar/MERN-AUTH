@@ -10,14 +10,14 @@ const OrderSummary = () => {
     <div className="pt-[100px] p-4 space-y-6 h-screen">
       <div className="text-center space-y-2">
         <h2 className="text-3xl font-bold text-[#afad55]">
-          🎉 Order Confirmed!
+          Order Confirmed!
         </h2>
         <p className="text-lg">
           Thank you for your purchase. Here's your order summary:
         </p>
       </div>
       <div className="bg-[#f1e2c2] p-6 shadow-lg space-y-4">
-        <h3 className="text-2xl font-semibold mb-4">🛍️ Order Details</h3>
+        <h3 className="text-2xl font-semibold mb-4">Order Details</h3>
         <ul className="space-y-3">
           {orderItems?.map((item, index) => (
             <li key={index} className="flex justify-between border-b pb-2">

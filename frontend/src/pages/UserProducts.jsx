@@ -39,7 +39,7 @@ export const UserProducts = () => {
             <hr className="my-2 text-black" />
             <button
               onClick={() => addToCartHandler(item)}
-              className="w-full bg-[#afad55] py-2 text-white rounded-md hover:bg-[#9d9a4b] transition"
+              className="w-full bg-[#afad55] py-2 text-white hover:bg-[#9d9a4b] transition"
             >
               Add to Cart
             </button>

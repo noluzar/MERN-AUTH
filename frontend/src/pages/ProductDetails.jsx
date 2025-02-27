@@ -1,4 +1,3 @@
-// import React from "react";
 import { useEffect } from "react";
 import { useProductStore } from "../store/product";
 import { IoCartOutline, IoStarSharp } from "react-icons/io5";
@@ -15,7 +14,6 @@ const ProductDetails = () => {
 
   console.log(product);
 
-  // Fetch products on component mount
   useEffect(() => {
     fetchProductsById(id);
   }, [fetchProductsById, id]);
@@ -26,7 +24,7 @@ const ProductDetails = () => {
         <IoIosArrowBack />
         <button>Back to products</button>
       </Link>
-      <div className="flex p-11 justify-center space-x-[100px] items-center h-[70vh] ">
+      <div className="flex p-11 justify-center space-x-[100px]">
             <div key={product._id} className="h-[60vh] w-[40%] bg-[#f1e2c2] p-4">
               <img
                 src={product.image || "/default-image.jpg"}
@@ -34,7 +32,7 @@ const ProductDetails = () => {
                 className="w-full h-full object-fill"
               />
         </div>
-        <div className="w-[40%] h-[60vh] p-4 space-y-4">
+        <div className="w-[40%] space-y-4">
             <div key={product._id} className="space-y-4 text-md h-full">
               <p className="text-3xl font-semibold">{product.name}</p>
               <p className="text-gray-500">{product._id}</p>
@@ -47,7 +45,7 @@ const ProductDetails = () => {
               <p className="text-black text-md">214 Reviews</p>
               </div>
               <p className="text-xl">R{product.price}.00</p>
-              <p>{product.description}</p>
+              <p className="h-[30vh]">{product.description}</p>
               <div className="flex space-x-4">
           <div className="w-[50%] border-black border p-2 text-center text-lg">
                 <button>Buy Now</button>

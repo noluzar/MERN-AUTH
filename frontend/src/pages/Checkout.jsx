@@ -43,12 +43,12 @@ const Checkout = () => {
             <div className="space-y-2">
               <p>First Name *</p>
               <input
-                placeholder="Card Number *"
+                placeholder="First Name *"
                 className="p-3 rounded-md w-full outline-none"
               />
               <p>Last Name *</p>
               <input
-                placeholder="Card Number *"
+                placeholder="Last Name *"
                 className="p-3 rounded-md w-full outline-none"
               />
             </div>
@@ -95,7 +95,6 @@ const Checkout = () => {
                 </select>
               </div>
             </div>
-
             <div>
               <p>Security code *</p>
               <input
