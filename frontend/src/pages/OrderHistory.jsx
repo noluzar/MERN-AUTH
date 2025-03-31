@@ -48,7 +48,7 @@ const OrderHistory = () => {
       </div>
       <div>
         {orders.length === 0 ? (
-          <p>You don't have any past orders.</p>
+          <p>You don&apos;t have any past orders.</p>
         ) : (
           orders.map((order) => (
             <div
