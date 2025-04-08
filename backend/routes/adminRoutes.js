@@ -9,4 +9,4 @@ const router = express.Router();
 router.get("/", protect, adminAccess, getUsers);
 router.delete("/:id", protect, adminAccess, deleteUser);
 
-export default router;
+export {router}
