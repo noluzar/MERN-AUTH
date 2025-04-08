@@ -1,12 +1,12 @@
-import express from "express";
-import { getUsers } from "../controllers/admin/getUsers.js";
-import { deleteUser } from "../controllers/admin/deleteUser.js";
-import { adminAccess } from "../middleware/roleAccessMiddleware.js";
-import { protect } from "../middleware/authMiddleWare.js";
+const express = require('express');
+const { getUsers } = require('../controllers/admin/getUsers.js');
+const { deleteUser } = require('../controllers/admin/deleteUser.js');
+const { adminAccess } = require('../middleware/roleAccessMiddleware.js');
+const { protect } = require('../middleware/authMiddleWare.js');
 
 const router = express.Router();
 
 router.get("/", protect, adminAccess, getUsers);
 router.delete("/:id", protect, adminAccess, deleteUser);
 
-export default router;
+module.exports = router;
