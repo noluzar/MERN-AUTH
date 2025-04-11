@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from 'dotenv';
 import productRoutes from "./routes/product.route.js";
-import adminRoutes from './routes/adminRoutes.js';
+// import adminRoutes from './routes/adminRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import dashboardRoutes from './routes/dashboardRoutes.js';
 import cors from 'cors';
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true}));
 
 app.use(cookieParser());
 
-app.use('/api/admin', adminRoutes);
+// app.use('/api/admin', adminRoutes);
 app.use("/api/products", productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
