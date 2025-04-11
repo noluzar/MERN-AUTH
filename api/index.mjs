@@ -1,18 +1,18 @@
 import express from "express";
 import dotenv from 'dotenv';
-import productRoutes from "../routes/product.route.js";
-import adminRoutes from '../routes/adminRoutes.js';
-import orderRoutes from '../routes/orderRoutes.js';
-import dashboardRoutes from '../routes/dashboardRoutes.js';
+import productRoutes from "../backend/routes/product.route.js";
+import adminRoutes from '../backend/routes/adminRoutes.js';
+import orderRoutes from '../backend/routes/orderRoutes.js';
+import dashboardRoutes from '../backend/routes/dashboardRoutes.js';
 import cors from 'cors';
 
 
 dotenv.config();
 import cookieParser from "cookie-parser";
-import { notFound, errorHandler } from "../middleware/errorMiddleWare.js"; 
-import connectDB from "../config/db.js";
-const port = process.env.PORT || 5000;
-import userRoutes from '../routes/userRoutes.js';
+import { notFound, errorHandler } from "../backend/middleware/errorMiddleWare.js"; 
+import connectDB from "../backend/config/db.js";
+// const port = process.env.PORT || 5000;
+import userRoutes from '../backend/routes/userRoutes.js';
 
 connectDB();
 
@@ -35,5 +35,7 @@ app.get('/', (req, res) => res.send('Server is ready'));
 app.use(notFound);
 app.use(errorHandler);
 
+export default app;
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+
+// app.listen(port, () => console.log(`Server started on port ${port}`));
